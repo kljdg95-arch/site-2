@@ -4,10 +4,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دنیای خوک کوچولو 🐷</title>
+
+<title>PIGGY EMPIRE | The Billionaire Pig</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+:root {
+    --bg: #100d12;
+    --panel: #1b151d;
+    --pink: #ff82ac;
+    --pink2: #ffb3ca;
+    --gold: #eac77c;
+    --white: #fff7fa;
+    --muted: #a89aa4;
+    --border: rgba(255,255,255,.09);
+}
 
 * {
     margin: 0;
@@ -15,217 +29,632 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
+    background: var(--bg);
+    color: var(--white);
     font-family: 'Vazirmatn', sans-serif;
-    background: #fff5f6;
-    color: #382a30;
     overflow-x: hidden;
 }
 
+::selection {
+    background: var(--pink);
+    color: #170d13;
+}
+
+/* BACKGROUND */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 80% 10%, #a83b6830, transparent 30%),
+      radial-gradient(circle at 10% 70%, #c48c3520, transparent 30%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.noise {
+    position: fixed;
+    inset: 0;
+    opacity: .025;
+    pointer-events: none;
+    z-index: 10;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* HEADER */
+
 header {
+    height: 82px;
+    padding: 0 8%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 22px 9%;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: #100d12c9;
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.logo {
-    font-size: 25px;
+.brand {
+    font-size: 23px;
     font-weight: 900;
-    color: #ed7899;
+    letter-spacing: 2px;
 }
 
-.logo span {
-    color: #382a30;
+.brand span {
+    color: var(--pink);
+}
+
+.brand small {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    font-weight: 500;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
 }
 
 nav a {
+    color: #c4b7c0;
     text-decoration: none;
-    color: #725c65;
-    margin: 0 13px;
-    font-size: 14px;
+    font-size: 12px;
     transition: .3s;
 }
 
 nav a:hover {
-    color: #ed7899;
+    color: var(--pink);
 }
 
-.hero {
-    min-height: 80vh;
+.header-right {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 60px;
-    padding: 50px 10%;
-    flex-wrap: wrap;
+    gap: 12px;
 }
 
-.content {
-    flex: 1;
-    min-width: 280px;
-    animation: appear 1s ease;
-}
-
-.tag {
-    display: inline-block;
-    background: #ffe0e9;
-    color: #d95781;
-    padding: 9px 18px;
+.status {
+    border: 1px solid #eac77c44;
+    color: var(--gold);
     border-radius: 30px;
-    font-size: 13px;
-    margin-bottom: 22px;
+    padding: 8px 15px;
+    font-size: 10px;
 }
 
-h1 {
-    font-size: clamp(38px, 5vw, 65px);
+/* HERO */
+
+.hero {
+    min-height: 730px;
+    padding: 95px 10%;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+}
+
+.hero-content {
+    animation: enter 1s ease both;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 35px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.hero h1 {
+    font-size: clamp(45px, 6vw, 78px);
     line-height: 1.5;
     font-weight: 900;
 }
 
-h1 span {
-    color: #ed7899;
+.hero h1 span {
+    display: block;
+    color: var(--pink);
 }
 
-.description {
-    color: #8b737d;
-    line-height: 2.2;
-    margin-top: 20px;
-    max-width: 480px;
+.hero-description {
+    color: var(--muted);
+    line-height: 2.5;
+    font-size: 14px;
+    max-width: 500px;
+    margin-top: 25px;
 }
 
-.buttons {
+.hero-buttons {
     display: flex;
-    gap: 12px;
-    margin-top: 30px;
+    gap: 14px;
+    margin-top: 35px;
     flex-wrap: wrap;
 }
 
 .btn {
+    padding: 15px 24px;
+    border-radius: 12px;
     text-decoration: none;
-    padding: 14px 26px;
-    border-radius: 14px;
-    font-weight: 700;
-    transition: .3s;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .35s;
 }
 
-.primary {
-    background: #ed7899;
+.btn-primary {
+    background: linear-gradient(120deg, #ffb2c9, #f16b9a);
+    color: #241018;
+    box-shadow: 0 10px 35px #ff82ac35;
+}
+
+.btn-outline {
+    border: 1px solid var(--border);
     color: white;
-    box-shadow: 0 10px 25px #ed789944;
-}
-
-.secondary {
-    background: white;
-    color: #725c65;
 }
 
 .btn:hover {
     transform: translateY(-5px);
 }
 
-.image-box {
-    width: min(420px, 90vw);
-    height: 420px;
-    background: linear-gradient(145deg, #ffe0e9, #ffc2d5);
-    border-radius: 45% 45% 35% 35%;
+/* PIG IMAGE */
+
+.pig-stage {
+    height: 510px;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    animation: float 4s ease-in-out infinite;
-    box-shadow: 0 25px 60px #ed789933;
+    animation: enter 1.2s ease both;
 }
 
-.image-box img {
-    width: 90%;
-    height: 90%;
-    object-fit: contain;
-    border-radius: 30px;
-}
-
-.floating {
+.pig-glow {
     position: absolute;
-    font-size: 35px;
-    animation: float 3s infinite ease-in-out;
+    width: 390px;
+    height: 390px;
+    background: radial-gradient(circle, #ff82ac37, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
 }
 
-.heart {
-    top: 15px;
-    right: -15px;
+.pig-frame {
+    width: min(400px, 90%);
+    height: 420px;
+    position: relative;
+    border: 1px solid #eac77c55;
+    border-radius: 190px 190px 35px 35px;
+    background: linear-gradient(145deg,#37232e,#171017);
+    overflow: hidden;
+    box-shadow: 0 30px 100px #0009;
+    animation: floating 5s ease-in-out infinite;
 }
 
-.star {
+.pig-frame::before {
+    content: "P";
+    position: absolute;
+    font-size: 320px;
+    font-weight: 900;
+    color: #ffffff05;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pig-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+}
+
+.pig-label {
+    position: absolute;
     bottom: 20px;
-    left: -20px;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 3;
+    white-space: nowrap;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background: #140e14dd;
+    border: 1px solid #eac77c66;
+    color: var(--gold);
+    font-size: 11px;
+}
+
+.floating-item {
+    position: absolute;
+    font-size: 30px;
+    animation: floating 4s infinite ease-in-out;
+}
+
+.item1 { top: 40px; right: 10px; }
+.item2 { bottom: 70px; left: 0; animation-delay: 1s; }
+.item3 { top: 110px; left: 0; animation-delay: 2s; }
+
+/* DIVIDER */
+
+.divider {
+    width: 80%;
+    height: 1px;
+    margin: auto;
+    background: linear-gradient(90deg,transparent,#eac77c66,transparent);
+}
+
+/* STATS */
+
+.stats {
+    padding: 65px 10%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+    padding: 25px 10px;
+    border-left: 1px solid var(--border);
+}
+
+.stat:last-child {
+    border: none;
+}
+
+.stat-number {
+    font-size: 35px;
+    font-weight: 900;
+    color: var(--gold);
+    direction: ltr;
+}
+
+.stat p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+/* GENERAL SECTIONS */
+
+section:not(.hero) {
+    scroll-margin-top: 100px;
 }
 
 .section {
-    padding: 80px 10%;
-    text-align: center;
+    padding: 105px 10%;
 }
 
-.section h2 {
-    font-size: 32px;
+.section-heading {
+    margin-bottom: 50px;
+}
+
+.section-heading .overline {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 3px;
     margin-bottom: 15px;
 }
 
-.section > p {
-    color: #987f89;
-    margin-bottom: 40px;
+.section-heading h2 {
+    font-size: clamp(30px,4vw,43px);
+    font-weight: 900;
 }
 
-.cards {
+.section-heading h2 span {
+    color: var(--pink);
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 2.2;
+}
+
+/* ASSETS */
+
+.assets-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
 }
 
-.card {
-    background: white;
-    border: 1px solid #f7e5eb;
-    padding: 32px 22px;
+.asset-card {
+    padding: 30px;
+    background: linear-gradient(145deg,#211822,#171219);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.asset-card:hover {
+    transform: translateY(-8px);
+    border-color: #ff82ac66;
+    box-shadow: 0 20px 50px #0005;
+}
+
+.asset-icon {
+    font-size: 35px;
+    margin-bottom: 25px;
+}
+
+.asset-card h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.asset-card p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 2.2;
+}
+
+.asset-value {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* MANSION */
+
+.mansion {
+    background:
+    linear-gradient(90deg,#100d12,#21141e,#100d12);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.mansion-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    align-items: center;
+}
+
+.mansion-visual {
+    min-height: 340px;
     border-radius: 25px;
+    background:
+    radial-gradient(circle at 50% 50%,#ff82ac30,transparent 60%),
+    linear-gradient(145deg,#32202c,#171019);
+    border: 1px solid #eac77c55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 130px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mansion-visual::after {
+    content: "PIGGY ROYAL ESTATE";
+    position: absolute;
+    bottom: 25px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+}
+
+.mansion-info h2 {
+    font-size: 36px;
+    line-height: 1.7;
+}
+
+.mansion-info h2 span {
+    color: var(--pink);
+}
+
+.mansion-info p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2.5;
+    margin-top: 20px;
+}
+
+.mansion-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.feature {
+    padding: 15px;
+    background: #ffffff08;
+    border-radius: 12px;
+    font-size: 11px;
+    color: #e8dce4;
+}
+
+/* LIFESTYLE */
+
+.life-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.life-card {
+    min-height: 210px;
+    padding: 28px;
+    border-radius: 20px;
+    background: #1b151d;
+    border: 1px solid var(--border);
     transition: .35s;
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px #ed789922;
+.life-card:hover {
+    background: #2a1c27;
+    transform: translateY(-6px);
 }
 
-.card .emoji {
-    font-size: 42px;
-    margin-bottom: 15px;
+.life-card .emoji {
+    font-size: 35px;
 }
 
-.card h3 {
-    margin-bottom: 12px;
+.life-card h3 {
+    margin-top: 22px;
+    font-size: 16px;
 }
 
-.card p {
-    font-size: 13px;
-    color: #927d85;
+.life-card p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 2.2;
+    margin-top: 10px;
+}
+
+/* QUOTE */
+
+.quote {
+    padding: 90px 10%;
+    text-align: center;
+    background: linear-gradient(120deg,#321a2a,#1b121b);
+    border-top: 1px solid #eac77c44;
+    border-bottom: 1px solid #eac77c44;
+}
+
+.quote-icon {
+    color: var(--gold);
+    font-size: 55px;
+}
+
+.quote h2 {
+    font-size: clamp(23px,4vw,39px);
+    line-height: 2;
+    max-width: 850px;
+    margin: 20px auto;
+}
+
+.quote h2 span {
+    color: var(--pink);
+}
+
+.quote p {
+    color: var(--gold);
+    font-size: 12px;
+}
+
+/* FUN FACTS */
+
+.facts {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.fact {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    background: #1b151d;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+}
+
+.fact span {
+    font-size: 28px;
+}
+
+.fact p {
+    font-size: 12px;
+    color: #cfc0ca;
     line-height: 2;
 }
 
+/* FOOTER */
+
 footer {
-    text-align: center;
-    padding: 30px;
-    color: #a68c97;
-    background: #ffe9ef;
+    padding: 65px 10% 25px;
+    background: #0b090d;
+    border-top: 1px solid var(--border);
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+}
+
+.footer-brand {
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.footer-brand span {
+    color: var(--pink);
+}
+
+.footer-description {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 2.5;
+    max-width: 300px;
+    margin-top: 15px;
+}
+
+.footer-links h4 {
+    color: var(--gold);
+    margin-bottom: 15px;
     font-size: 13px;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+.footer-links a {
+    display: block;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11px;
+    margin: 12px 0;
 }
 
-@keyframes appear {
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    color: #857681;
+    font-size: 10px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ANIMATIONS */
+
+@keyframes floating {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+
+@keyframes enter {
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(35px);
     }
     to {
         opacity: 1;
@@ -233,9 +662,48 @@ footer {
     }
 }
 
-@media(max-width: 700px) {
+/* SCROLL ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s, transform .8s;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .eyebrow,.hero-buttons {
+        justify-content: center;
+    }
+
+    .assets-grid,.life-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .mansion-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:650px) {
     header {
-        padding: 20px 5%;
+        padding: 0 5%;
     }
 
     nav {
@@ -243,112 +711,524 @@ footer {
     }
 
     .hero {
-        text-align: center;
-        padding: 45px 6%;
-        gap: 45px;
+        padding: 65px 7%;
     }
 
-    .description {
-        margin: 20px auto;
+    .pig-stage {
+        height: 420px;
     }
 
-    .buttons {
+    .pig-frame {
+        height: 350px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .stat:nth-child(2) {
+        border-left: none;
+    }
+
+    .assets-grid,.life-grid,.facts {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 75px 7%;
+    }
+
+    .mansion-visual {
+        min-height: 250px;
+        font-size: 90px;
+    }
+
+    .footer-bottom {
         justify-content: center;
-    }
-
-    .image-box {
-        height: 320px;
+        text-align: center;
     }
 }
+
 </style>
 </head>
 
 <body>
 
+<div class="noise"></div>
+
 <header>
-    <div class="logo">PIG<span>GY.</span> 🐷</div>
+
+    <div class="brand">
+        PIGGY<span> EMPIRE</span>
+        <small>THE WORLD OF WEALTH</small>
+    </div>
+
     <nav>
         <a href="#home">خانه</a>
-        <a href="#about">درباره خوک</a>
-        <a href="#fun">ویژگی‌ها</a>
+        <a href="#wealth">ثروت و دارایی</a>
+        <a href="#mansion">عمارت سلطنتی</a>
+        <a href="#lifestyle">سبک زندگی</a>
+        <a href="#about">درباره من</a>
     </nav>
+
+    <div class="header-right">
+        <div class="status">✦ EXCLUSIVE PROFILE</div>
+    </div>
+
 </header>
 
-<main>
+<!-- HERO -->
 
 <section class="hero" id="home">
 
-    <div class="content">
-        <div class="tag">🐽 خوش اومدی به دنیای صورتی!</div>
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            THE MOST FABULOUS PIG IN THE WORLD
+        </div>
 
         <h1>
-            اینجا قلمرو<br>
-            <span>خوک دوست‌داشتنیه!</span>
+            من معمولی نیستم.
+            <span>من یک امپراتوری‌ام!</span>
         </h1>
 
-        <p class="description">
-            یه موجود کوچولوی بامزه، کمی شیطون،
-            فوق‌العاده دوست‌داشتنی و البته با کلی
-            شخصیت خاص! این خوک معمولی نیست...
-            این رئیس دنیای خودشه! 😂
+        <p class="hero-description">
+            به دنیای من خوش آمدید؛ جایی که پول محدودیت ندارد،
+            تجمل یک سبک زندگی است و حتی صبحانه هم باید
+            در یک عمارت چند میلیون دلاری سرو شود!
+
+            من یک خوک معمولی نیستم.
+            من صاحب یک امپراتوری هستم.
         </p>
 
-        <div class="buttons">
-            <a href="#about" class="btn primary">بیشتر بشناسیمش 🐷</a>
-            <a href="#fun" class="btn secondary">ویژگی‌هاش</a>
+        <div class="hero-buttons">
+            <a href="#wealth" class="btn btn-primary">
+                کشف امپراتوری من ←
+            </a>
+
+            <a href="#about" class="btn btn-outline">
+                داستان من
+            </a>
         </div>
+
     </div>
 
-    <div class="image-box">
-        <!-- تصویر خودت را با نام pig.png کنار فایل HTML بگذار -->
-        <img src="pig.png" alt="خوک کارتونی دوست‌داشتنی">
+    <div class="pig-stage">
 
-        <span class="floating heart">💗</span>
-        <span class="floating star">⭐</span>
+        <div class="pig-glow"></div>
+
+        <span class="floating-item item1">👑</span>
+        <span class="floating-item item2">💎</span>
+        <span class="floating-item item3">✨</span>
+
+        <div class="pig-frame">
+
+            <!-- همان تصویر قبلی -->
+
+            <img src="pig.png" alt="The Billionaire Pig">
+
+            <div class="pig-label">
+                👑 THE BOSS OF EVERYTHING
+            </div>
+
+        </div>
+
     </div>
 
 </section>
 
-<section class="section" id="about">
-    <h2>این خوک کیه؟ 🐽</h2>
-    <p>یه شخصیت خاص با دنیای مخصوص خودش!</p>
+<div class="divider"></div>
 
-    <div class="cards">
+<!-- STATS -->
 
-        <div class="card">
-            <div class="emoji">😎</div>
-            <h3>خیلی باکلاس!</h3>
-            <p>همیشه فکر می‌کنه جذاب‌ترین موجود دنیاست!</p>
+<section class="stats">
+
+    <div class="stat">
+        <div class="stat-number" data-target="999">0</div>
+        <p>سطح اعتمادبه‌نفس از ۱۰۰</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number" data-target="100">0</div>
+        <p>درصد جذابیت (به نظر خودش!)</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number" data-target="24">0</div>
+        <p>ساعت در حالت لاکچری</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number" data-target="0">0</div>
+        <p>میزان تحمل گرسنگی 😂</p>
+    </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- WEALTH -->
+
+<section class="section reveal" id="wealth">
+
+    <div class="section-heading">
+        <div class="overline">THE EMPIRE</div>
+        <h2>امپراتوری <span>ثروت من</span></h2>
+        <p>
+            من فقط پولدار نیستم؛ من مجموعه‌ای از تجملات،
+            دارایی‌ها و انتخاب‌های بسیار گران‌قیمت هستم.
+        </p>
+    </div>
+
+    <div class="assets-grid">
+
+        <div class="asset-card">
+            <div class="asset-icon">🏰</div>
+            <h3>عمارت سلطنتی</h3>
+            <p>
+                یک عمارت باشکوه با معماری خاص،
+                باغ اختصاصی، استخر و امکانات فوق‌العاده.
+            </p>
+            <div class="asset-value">ROYAL RESIDENCE</div>
         </div>
 
-        <div class="card">
-            <div class="emoji">😂</div>
-            <h3>فوق‌العاده شیطون</h3>
-            <p>هیچ فرصتی رو برای خرابکاری از دست نمی‌ده!</p>
+        <div class="asset-card">
+            <div class="asset-icon">🚘</div>
+            <h3>کلکسیون خودرو</h3>
+            <p>
+                ماشین‌های لوکس و اسپرت برای روزهایی
+                که رانندگی معمولی دیگر کافی نیست.
+            </p>
+            <div class="asset-value">PRIVATE CAR COLLECTION</div>
         </div>
 
-        <div class="card">
+        <div class="asset-card">
+            <div class="asset-icon">✈️</div>
+            <h3>جت اختصاصی</h3>
+            <p>
+                سفر به هر نقطه از جهان بدون صف،
+                بدون انتظار و البته بدون بلیت اقتصادی!
+            </p>
+            <div class="asset-value">PRIVATE AVIATION</div>
+        </div>
+
+        <div class="asset-card">
+            <div class="asset-icon">💎</div>
+            <h3>جواهرات و ساعت‌ها</h3>
+            <p>
+                مجموعه‌ای از ساعت‌های گران‌قیمت،
+                سنگ‌های قیمتی و اکسسوری‌های خاص.
+            </p>
+            <div class="asset-value">LUXURY COLLECTION</div>
+        </div>
+
+        <div class="asset-card">
+            <div class="asset-icon">🏢</div>
+            <h3>شرکت‌های بزرگ</h3>
+            <p>
+                مالک مجموعه‌ای از کسب‌وکارها
+                و سرمایه‌گذاری‌های بین‌المللی.
+            </p>
+            <div class="asset-value">GLOBAL HOLDINGS</div>
+        </div>
+
+        <div class="asset-card">
+            <div class="asset-icon">🏝️</div>
+            <h3>جزیره خصوصی</h3>
+            <p>
+                یک بهشت اختصاصی برای استراحت،
+                تفریح و فرار از شلوغی دنیا.
+            </p>
+            <div class="asset-value">PRIVATE ISLAND</div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MANSION -->
+
+<section class="section mansion reveal" id="mansion">
+
+    <div class="mansion-box">
+
+        <div class="mansion-visual">
+            🏰
+        </div>
+
+        <div class="mansion-info">
+
+            <div class="overline" style="color:var(--gold)">
+                MY PRIVATE KINGDOM
+            </div>
+
+            <h2>
+                خانه‌ای که
+                <span>شبیه قصر است!</span>
+            </h2>
+
+            <p>
+                اینجا فقط یک خانه نیست.
+                اینجا مرکز فرماندهی امپراتوری من است.
+
+                از استخر اختصاصی و سالن سینما گرفته
+                تا اتاق بازی، سالن ورزش، باغ سلطنتی
+                و آشپزخانه‌ای که همیشه آماده سرو خوراکی است!
+            </p>
+
+            <div class="mansion-features">
+
+                <div class="feature">🏊 استخر اختصاصی</div>
+                <div class="feature">🎬 سینمای شخصی</div>
+                <div class="feature">🎮 اتاق گیمینگ</div>
+                <div class="feature">🌴 باغ سلطنتی</div>
+                <div class="feature">🍓 آشپزخانه ویژه</div>
+                <div class="feature">👑 اتاق سلطنتی</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LIFESTYLE -->
+
+<section class="section reveal" id="lifestyle">
+
+    <div class="section-heading">
+        <div class="overline">LUXURY LIFESTYLE</div>
+        <h2>زندگی روزمره <span>یک میلیاردر!</span></h2>
+        <p>
+            برنامه روزانه من کمی با بقیه فرق دارد.
+        </p>
+    </div>
+
+    <div class="life-grid">
+
+        <div class="life-card">
+            <div class="emoji">☀️</div>
+            <h3>صبح‌های سلطنتی</h3>
+            <p>
+                بیدار شدن در یک تخت فوق‌العاده راحت،
+                صبحانه مفصل و شروع روز با آرامش کامل.
+            </p>
+        </div>
+
+        <div class="life-card">
             <div class="emoji">🍓</div>
-            <h3>عاشق خوراکی</h3>
-            <p>اگه غذا وسط باشه، هیچ چیز دیگه‌ای مهم نیست!</p>
+            <h3>تغذیه اختصاصی</h3>
+            <p>
+                توت‌فرنگی، دسرهای خوشمزه،
+                غذاهای درجه یک و هر چیزی که دلم بخواهد!
+            </p>
+        </div>
+
+        <div class="life-card">
+            <div class="emoji">🚘</div>
+            <h3>رانندگی لاکچری</h3>
+            <p>
+                انتخاب یک ماشین از کلکسیون شخصی
+                و رفتن به یک مقصد جذاب.
+            </p>
+        </div>
+
+        <div class="life-card">
+            <div class="emoji">🎮</div>
+            <h3>سرگرمی و بازی</h3>
+            <p>
+                بازی کردن در اتاق گیمینگ شخصی
+                با بهترین تجهیزات.
+            </p>
+        </div>
+
+        <div class="life-card">
+            <div class="emoji">🌴</div>
+            <h3>تعطیلات خصوصی</h3>
+            <p>
+                سفر به جزیره شخصی، استراحت کنار دریا
+                و دور بودن از تمام دردسرها.
+            </p>
+        </div>
+
+        <div class="life-card">
+            <div class="emoji">😎</div>
+            <h3>اعتمادبه‌نفس بی‌نهایت</h3>
+            <p>
+                چون بالاخره باید کسی باشد که
+                جذابیت خودش را به دنیا یادآوری کند!
+            </p>
         </div>
 
     </div>
+
 </section>
 
-<section class="section" id="fun">
-    <h2>قانون شماره یک! 🐷</h2>
-    <p>
-        زندگی کوتاه‌تر از اونه که جدی باشیم.
-        بخند، خوش بگذرون و خوک بمون!
-    </p>
+<!-- QUOTE -->
+
+<section class="quote reveal">
+
+    <div class="quote-icon">“</div>
+
+    <h2>
+        بعضی‌ها برای پول کار می‌کنند...
+        <span>من برای انتخاب طعم دسرم وقت می‌گذارم!</span>
+    </h2>
+
+    <p>— THE BILLIONAIRE PIG 👑</p>
+
 </section>
 
-</main>
+<!-- ABOUT -->
+
+<section class="section reveal" id="about">
+
+    <div class="section-heading">
+        <div class="overline">THE PERSONALITY</div>
+        <h2>شخصیت واقعی <span>آقای خوک!</span></h2>
+        <p>
+            پشت این همه ثروت، یک شخصیت بسیار خاص وجود دارد.
+        </p>
+    </div>
+
+    <div class="facts">
+
+        <div class="fact">
+            <span>😎</span>
+            <p>اعتمادبه‌نفسش از موجودی حساب بانکی‌اش هم بیشتر است!</p>
+        </div>
+
+        <div class="fact">
+            <span>😂</span>
+            <p>شیطنت کردن یکی از سرگرمی‌های اصلی اوست.</p>
+        </div>
+
+        <div class="fact">
+            <span>🍓</span>
+            <p>توت‌فرنگی برای او یک خوراکی معمولی نیست؛ یک عشق واقعی است.</p>
+        </div>
+
+        <div class="fact">
+            <span>👑</span>
+            <p>در هر جمعی، خودش را مهم‌ترین شخصیت می‌داند.</p>
+        </div>
+
+        <div class="fact">
+            <span>💰</span>
+            <p>از تجملات خوشش می‌آید و همیشه بهترین‌ها را انتخاب می‌کند.</p>
+        </div>
+
+        <div class="fact">
+            <span>🐷</span>
+            <p>با تمام ثروتش، هنوز همان خوک بامزه و دوست‌داشتنی است.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
 
 <footer>
-    Made with 💗 and a little bit of pig energy 🐷
+
+    <div class="footer-main">
+
+        <div>
+            <div class="footer-brand">
+                PIGGY<span> EMPIRE.</span>
+            </div>
+
+            <p class="footer-description">
+                یک امپراتوری متفاوت،
+                یک شخصیت فراموش‌نشدنی
+                و یک خوک که همیشه در سطح بالاتری زندگی می‌کند!
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4>امپراتوری</h4>
+            <a href="#wealth">دارایی‌ها</a>
+            <a href="#mansion">عمارت</a>
+            <a href="#lifestyle">سبک زندگی</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>اطلاعات</h4>
+            <a href="#about">درباره خوک</a>
+            <a href="#home">صفحه اصلی</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© PIGGY EMPIRE — ALL RIGHTS RESERVED</span>
+        <span>MADE WITH 🩷 FOR THE MOST FABULOUS PIG.</span>
+    </div>
+
 </footer>
+
+<script>
+
+// Animated statistics
+
+const counters = document.querySelectorAll('.stat-number');
+
+const counterObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            const el = entry.target;
+            const target = Number(el.dataset.target);
+            let current = 0;
+
+            const step = Math.max(1, Math.ceil(target / 45));
+
+            const timer = setInterval(() => {
+
+                current += step;
+
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+
+                el.textContent = current.toLocaleString('en-US');
+
+            }, 30);
+
+            counterObserver.unobserve(el);
+        }
+
+    });
+
+}, { threshold: 0.5 });
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+
+// Reveal elements on scroll
+
+const revealObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+
+    });
+
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+    revealObserver.observe(el);
+});
+
+</script>
 
 </body>
 </html>
